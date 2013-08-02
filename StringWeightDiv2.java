@@ -1,3 +1,17 @@
+/* This algorithm is from misof.
+Suppose you want to count the number of solutions to x1+x2+x3+x4+...x26 = L such that all xi are positive integers. Set yi = xi-1, then all yi are non-negative integers that satisfy y1+...+y26 = L-26.
+
+Now, this new equation can be read as follows: in how many ways can L-26 tokens be distributed into 26 labeled boxes?
+
+Imagine the tokens all in a row: o o o o o o o o ...
+Now, we take 25 separators and place them arbitrarily into the row: o o o | o | | o o | ...
+Different ways of adding the separators correspond to different solutions. For example, the way shown above corresponds to y1=3, y2=1, y3=0, y4=2, ...
+
+Thus the number of solutions to our original equation is the same as the number of ways in which you can put P=L-26 tokens and Q=25 separators into a row. And this is C(P+Q,Q), where C is the binomial coefficient: out of P+Q positions in the row, we choose the Q that contain the separators.
+
+Hence, the number of solutions to the original equation is C(L-1,25).
+*/
+
 import java.util.*;
 import java.util.regex.*;
 import java.text.*;
