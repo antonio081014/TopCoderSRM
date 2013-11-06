@@ -4,37 +4,34 @@ import java.text.*;
 import java.math.*;
 import java.awt.geom.*;
 
-public class KeyDungeonDiv2
+public class TrafficCongestionDivTwo
 {
-	public int countDoors(int[] doorR, int[] doorG, int[] keys)
+	// This problem can be easily solved by drawing graph when th is 1, 2, 3 and 4.
+	// Then, realize the most effient way is to visit the triangle city with one car.
+	// Which means one car could visit 3 cities, also no other need to revisit these cities again.
+	// just like the red car on the left picture.
+	public long theMinCars(int th)
 	{
-		int r = keys[0];
-		int g = keys[1];
-		int w = keys[2];
-		
-		int count = 0;
-		for(int i=0; i<doorR.length; i++){
-			if(r+w>=doorR[i]) {
-				int leftR = Math.max(0, Math.min(w, r+w-doorR[i]));
-				if(leftR + g >= doorG[i])
-					count++;
-			}
+		long sum = 0;
+		for(int h = th-1; h>=0; h-=2){
+			sum += (long)Math.pow(2.0, h);
 		}
-		return count;
+		if(th%2==0) sum++;
+		return sum;
 	}
 	
 	public static void main(String[] args)
 	{
 		long time;
-		int answer;
+		long answer;
 		boolean errors = false;
-		int desiredAnswer;
+		long desiredAnswer;
 		
 		
 		time = System.currentTimeMillis();
-		answer = new KeyDungeonDiv2().countDoors(new int[]{2, 0, 5, 3}, new int[]{1, 4, 0, 2}, new int[]{2, 3, 1});
+		answer = new TrafficCongestionDivTwo().theMinCars(1);
 		System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
-		desiredAnswer = 3;
+		desiredAnswer = 1L;
 		System.out.println("Your answer:");
 		System.out.println("\t" + answer);
 		System.out.println("Desired answer:");
@@ -48,9 +45,9 @@ public class KeyDungeonDiv2
 			System.out.println("Match :-)");
 		System.out.println();
 		time = System.currentTimeMillis();
-		answer = new KeyDungeonDiv2().countDoors(new int[]{0, 1, 2, 0}, new int[]{0, 2, 3, 1}, new int[]{0, 0, 0});
+		answer = new TrafficCongestionDivTwo().theMinCars(2);
 		System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
-		desiredAnswer = 1;
+		desiredAnswer = 3L;
 		System.out.println("Your answer:");
 		System.out.println("\t" + answer);
 		System.out.println("Desired answer:");
@@ -64,9 +61,9 @@ public class KeyDungeonDiv2
 			System.out.println("Match :-)");
 		System.out.println();
 		time = System.currentTimeMillis();
-		answer = new KeyDungeonDiv2().countDoors(new int[]{3, 5, 4, 2, 8}, new int[]{4, 2, 3, 8, 1}, new int[]{0, 0, 10});
+		answer = new TrafficCongestionDivTwo().theMinCars(3);
 		System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
-		desiredAnswer = 5;
+		desiredAnswer = 5L;
 		System.out.println("Your answer:");
 		System.out.println("\t" + answer);
 		System.out.println("Desired answer:");
@@ -80,9 +77,9 @@ public class KeyDungeonDiv2
 			System.out.println("Match :-)");
 		System.out.println();
 		time = System.currentTimeMillis();
-		answer = new KeyDungeonDiv2().countDoors(new int[]{4, 5, 4, 6, 8}, new int[]{2, 1, 2, 3, 5}, new int[]{1, 2, 1});
+		answer = new TrafficCongestionDivTwo().theMinCars(10);
 		System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
-		desiredAnswer = 0;
+		desiredAnswer = 683L;
 		System.out.println("Your answer:");
 		System.out.println("\t" + answer);
 		System.out.println("Desired answer:");
@@ -96,9 +93,9 @@ public class KeyDungeonDiv2
 			System.out.println("Match :-)");
 		System.out.println();
 		time = System.currentTimeMillis();
-		answer = new KeyDungeonDiv2().countDoors(new int[]{41,44,41,57,58,74,84,100,58,2,43,32,82,97,44,13,35,98,96,81,43,77,18,51,27, 27,39,39,45,82,59,20,28,93,6,39,64,78,28,85,17,56,3,68,4,0,36,80,41,77}, new int[]{67,15,53,36,88,29,26,57,68,99,97,27,51,70,3,49,65,75,35,92,66,0,23,96,38,86, 98,31,26,75,30,2,92,78,100,99,38,26,85,74,77,15,16,48,100,88,55,93,99,54}, new int[]{39,31,34});
+		answer = new TrafficCongestionDivTwo().theMinCars(60);
 		System.out.println("Time: " + (System.currentTimeMillis()-time)/1000.0 + " seconds");
-		desiredAnswer = 17;
+		desiredAnswer = 768614336404564651L;
 		System.out.println("Your answer:");
 		System.out.println("\t" + answer);
 		System.out.println("Desired answer:");
